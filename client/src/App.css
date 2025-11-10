@@ -1,0 +1,323 @@
+/**
+ * Travel Planner Application Styles
+ * Nature-inspired design with green and brown color palette
+ */
+
+ @import 'tailwindcss/base';
+ @import 'tailwindcss/components';
+ @import 'tailwindcss/utilities';
+ @import 'leaflet/dist/leaflet.css';
+ 
+ /* Custom CSS Variables for Nature Theme */
+ :root {
+   --color-forest-green: #065f46;
+   --color-emerald: #10b981;
+   --color-sage: #84cc16;
+   --color-earth-brown: #92400e;
+   --color-warm-brown: #a16207;
+   --color-cream: #fef3c7;
+   --color-nature-bg: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #fef7ed 100%);
+ }
+ 
+ /* Global Styles */
+ * {
+   box-sizing: border-box;
+ }
+ 
+ html {
+   scroll-behavior: smooth;
+ }
+ 
+ body {
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+     sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   background: var(--color-nature-bg);
+   min-height: 100vh;
+ }
+ 
+ /* Custom Background Gradients */
+ .bg-nature-gradient {
+   background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #fef7ed 100%);
+ }
+ 
+ .bg-forest-gradient {
+   background: linear-gradient(135deg, #065f46 0%, #047857 50%, #059669 100%);
+ }
+ 
+ .bg-earth-gradient {
+   background: linear-gradient(135deg, #92400e 0%, #a16207 50%, #ca8a04 100%);
+ }
+ 
+ /* Custom Animations */
+ @keyframes fadeInUp {
+   from {
+     opacity: 0;
+     transform: translateY(30px);
+   }
+   to {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
+ 
+ @keyframes slideInRight {
+   from {
+     opacity: 0;
+     transform: translateX(30px);
+   }
+   to {
+     opacity: 1;
+     transform: translateX(0);
+   }
+ }
+ 
+ @keyframes pulse {
+   0%, 100% {
+     opacity: 1;
+   }
+   50% {
+     opacity: 0.5;
+   }
+ }
+ 
+ @keyframes bounce {
+   0%, 20%, 53%, 80%, 100% {
+     transform: translate3d(0, 0, 0);
+   }
+   40%, 43% {
+     transform: translate3d(0, -30px, 0);
+   }
+   70% {
+     transform: translate3d(0, -15px, 0);
+   }
+   90% {
+     transform: translate3d(0, -4px, 0);
+   }
+ }
+ 
+ /* Animation Classes */
+ .animate-fade-in-up {
+   animation: fadeInUp 0.6s ease-out;
+ }
+ 
+ .animate-slide-in-right {
+   animation: slideInRight 0.6s ease-out;
+ }
+ 
+ .animate-pulse-slow {
+   animation: pulse 2s infinite;
+ }
+ 
+ .animate-bounce-slow {
+   animation: bounce 2s infinite;
+ }
+ 
+ /* Custom Components */
+ .nature-card {
+   @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1;
+   background: linear-gradient(145deg, #ffffff 0%, #f9fafb 100%);
+   border: 1px solid rgba(16, 185, 129, 0.1);
+ }
+ 
+ .nature-card:hover {
+   border-color: rgba(16, 185, 129, 0.2);
+ }
+ 
+ .nature-button {
+   @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm transition-all duration-200 transform hover:scale-105 active:scale-95;
+ }
+ 
+ .nature-button-primary {
+   @apply nature-button bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:from-green-700 hover:to-emerald-700 focus:ring-4 focus:ring-green-200;
+ }
+ 
+ .nature-button-secondary {
+   @apply nature-button bg-gradient-to-r from-amber-600 to-orange-600 text-white hover:from-amber-700 hover:to-orange-700 focus:ring-4 focus:ring-amber-200;
+ }
+ 
+ .nature-button-outline {
+   @apply nature-button bg-white border-green-600 text-green-600 hover:bg-green-50 hover:border-green-700 focus:ring-4 focus:ring-green-200;
+ }
+ 
+ .nature-input {
+   @apply block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-colors;
+ }
+ 
+ .nature-input:focus {
+   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+ }
+ 
+ /* Loading States */
+ .loading-skeleton {
+   @apply animate-pulse bg-gray-200 rounded;
+ }
+ 
+ .loading-spinner {
+   border: 2px solid #f3f4f6;
+   border-top: 2px solid #10b981;
+   border-radius: 50%;
+   animation: spin 1s linear infinite;
+ }
+ 
+ @keyframes spin {
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
+ }
+ 
+ /* Map Styles */
+ .leaflet-container {
+   @apply rounded-lg shadow-lg;
+   font-family: inherit;
+ }
+ 
+ .leaflet-popup-content-wrapper {
+   @apply rounded-lg shadow-lg;
+   background: linear-gradient(145deg, #ffffff 0%, #f9fafb 100%);
+   border: 1px solid rgba(16, 185, 129, 0.2);
+ }
+ 
+ .leaflet-popup-content {
+   @apply text-gray-800;
+   font-family: inherit;
+   line-height: 1.5;
+ }
+ 
+ .leaflet-popup-tip {
+   background: #ffffff;
+   border: 1px solid rgba(16, 185, 129, 0.2);
+ }
+ 
+ .leaflet-control-zoom a {
+   @apply text-green-600 hover:text-green-700;
+   background: rgba(255, 255, 255, 0.95);
+   border: 1px solid rgba(16, 185, 129, 0.2);
+ }
+ 
+ .leaflet-control-zoom a:hover {
+   background: rgba(16, 185, 129, 0.1);
+ }
+ 
+ /* Route Line Styles */
+ .route-line-walking {
+   stroke: #10b981;
+   stroke-width: 4;
+   stroke-opacity: 0.8;
+   stroke-dasharray: 5, 5;
+ }
+ 
+ .route-line-cycling {
+   stroke: #3b82f6;
+   stroke-width: 4;
+   stroke-opacity: 0.8;
+ }
+ 
+ /* Weather Widget Styles */
+ .weather-card {
+   @apply nature-card p-4;
+   background: linear-gradient(135deg, #e0f2fe 0%, #e8f5e8 100%);
+ }
+ 
+ .weather-icon {
+   @apply w-12 h-12 mx-auto mb-2;
+   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+ }
+ 
+ .temperature-text {
+   @apply text-2xl font-bold text-gray-800;
+   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+ }
+ 
+ /* Custom Scrollbar */
+ .custom-scrollbar::-webkit-scrollbar {
+   width: 6px;
+ }
+ 
+ .custom-scrollbar::-webkit-scrollbar-track {
+   background: #f1f1f1;
+   border-radius: 3px;
+ }
+ 
+ .custom-scrollbar::-webkit-scrollbar-thumb {
+   background: #10b981;
+   border-radius: 3px;
+ }
+ 
+ .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+   background: #059669;
+ }
+ 
+ /* Route Difficulty Badges */
+ .difficulty-easy {
+   @apply bg-green-100 text-green-800 border border-green-200;
+ }
+ 
+ .difficulty-moderate {
+   @apply bg-yellow-100 text-yellow-800 border border-yellow-200;
+ }
+ 
+ .difficulty-hard {
+   @apply bg-red-100 text-red-800 border border-red-200;
+ }
+ 
+ /* Stats Cards */
+ .stat-card {
+   @apply nature-card p-6 text-center;
+   background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+ }
+ 
+ .stat-number {
+   @apply text-3xl font-bold text-green-600 mb-2;
+   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .stat-label {
+   @apply text-sm font-medium text-gray-600 uppercase tracking-wide;
+ }
+ 
+ /* Responsive Design Helpers */
+ @media (max-width: 640px) {
+   .nature-card {
+     @apply mx-2;
+   }
+   
+   .nature-button {
+     @apply w-full justify-center;
+   }
+   
+   .leaflet-container {
+     height: 300px !important;
+   }
+ }
+ 
+ @media (max-width: 768px) {
+   .stat-number {
+     @apply text-2xl;
+   }
+ }
+ 
+ /* Focus Styles for Accessibility */
+ .focus-visible:focus {
+   @apply outline-none ring-2 ring-green-500 ring-offset-2;
+ }
+ 
+ button:focus-visible,
+ input:focus-visible,
+ select:focus-visible,
+ textarea:focus-visible {
+   @apply outline-none ring-2 ring-green-500 ring-offset-2;
+ }
+ 
+ /* Reduced Motion Support */
+ @media (prefers-reduced-motion: reduce) {
+   *,
+   *::before,
+   *::after {
+     animation-duration: 0.01ms !important;
+     animation-iteration-count: 1 !important;
+     transition-duration: 0.01ms !important;
+     scroll-behavior: auto !important;
+   }
+ }
